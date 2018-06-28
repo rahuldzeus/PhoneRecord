@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PhoneRecord</string>
+    <string name="glim">Glim</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="loginButton">Log in</string>
+    <string name="forgotDescription">Problem in Login?</string>
+    <string name="or">OR</string>
+    <string name="clickHere"> Click Here</string>
+    <string name="facebook">Facebook Login</string>
+    <string name="loginfacebook">Log in with Facebook</string>
+    <string name="signup">Don\'t have an account?</string>
+    <string name="signupcolor"> Sign Up</string>
+    <string name="glimFont">Marquisette BTN Light</string>
+</resources>
