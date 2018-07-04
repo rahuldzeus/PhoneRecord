@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+   <item android:title="Rate Us"
+       android:id="@+id/rate_us"/>
+    <item android:title="Go Premium"
+        android:id="@+id/go_premium"/>
+    <item android:title="FAQ"
+        android:id="@+id/faq"/>
+    <item android:title="Invite"
+        android:id="@+id/invite"/>
+    <item android:title="Terms"
+        android:id="@+id/terms"/>
+    <item android:title="Privacy"
+        android:id="@+id/privacy"/>
+    <item android:title="Log Out"
+        android:id="@+id/log_out"/>
+</menu>

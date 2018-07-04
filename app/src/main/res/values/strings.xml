@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PhoneRecord</string>
     <string name="glim">Glim</string>
-    <string name="email">Email</string>
+    <string name="phoneNumber">Phone</string>
     <string name="password">Password</string>
     <string name="loginButton">Log in</string>
     <string name="forgotDescription">Problem in Login?</string>
@@ -12,4 +12,27 @@
     <string name="signup">Don\'t have an account?</string>
     <string name="signupcolor"> Sign Up</string>
     <string name="glimFont">Marquisette BTN Light</string>
+    <string name="signUpText">Sign Up</string>
+    <string name="login">Already have an account?</string>
+    <string name="enterConfirmationCode">Enter Confirmation Code</string>
+    <string name="codeMessage">Enter the 6-digit code</string>
+    <string name="resendOTP">Request a new code</string>
+    <string name="codeNext">Next</string>
+    <string name="userName">Name</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="register_finish">Finish</string>
+    <string name="details">Almost done</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="profile_pic">Profile Picture</string>
+    <string name="post">post</string>
+    <string name="followers">followers</string>
+    <string name="following">following</string>
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="navigation_title_news">news</string>
+    <string name="navigation_title_search">search</string>
+    <string name="navigation_title_upload">upload</string>
+    <string name="navigation_title_notification">notification</string>
+    <string name="navigation_title_profile">profile</string>
+    <string name="facebook_app_id">821885504681553</string>
+    <string name="fb_login_protocol_scheme">fb821885504681553</string>
 </resources>
