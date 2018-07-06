@@ -20,6 +20,7 @@ import android.widget.Toast;
 public class HomePage extends AppCompatActivity {
 
     public TextView mTextMessage;
+    short backCount=0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,7 +46,6 @@ public class HomePage extends AppCompatActivity {
                     //Fragment
                   return true;
                 case R.id.navigation_upload:
-                    //VideoUploader in Fragment
                     //Fragment
                     return true;
                 case R.id.navigation_notification:
@@ -56,8 +56,8 @@ public class HomePage extends AppCompatActivity {
                     //Fragment
                     return true;
                 case R.id.navigation_profile:
-                    Intent toProfilePage=new Intent(HomePage.this, ProfilePage.class);
-                    startActivity(toProfilePage);
+                    Intent toProfile=new Intent(HomePage.this,ProfilePage.class); //Activity
+                    startActivity(toProfile);
                     return true;
             }
             return false;
@@ -87,29 +87,35 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.rate_us:
-                Toast.makeText(HomePage.this,"HELLO Rate Us",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "HELLO Rate Us", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.go_premium:
-                Toast.makeText(HomePage.this,"HELLO Premium",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "HELLO Premium", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.faq:
-                Toast.makeText(HomePage.this,"HELLO FAQ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "HELLO FAQ", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.invite:
-                Toast.makeText(HomePage.this,"HELLO Invite",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "HELLO Invite", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.terms:
-                Toast.makeText(HomePage.this,"HELLO Terms",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "HELLO Terms", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.privacy:
-                Toast.makeText(HomePage.this,"HELLO Privacy",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "HELLO Privacy", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.log_out:
-                Toast.makeText(HomePage.this,"HELLO Logout",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "HELLO Logout", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

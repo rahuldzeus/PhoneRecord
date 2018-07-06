@@ -2,13 +2,14 @@
 <resources>
     <color name="colorPrimary">#21377e</color>
     <color name="colorPrimaryDark">#42434a</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#63acf6</color>
     <color name="glimColor">#431414</color>
     <color name="hintColor">#310910</color>
     <color name="loginButtonColor">#FFFFFF</color>
     <color name="loginButtonBackgroundColor">#21377e</color>
     <color name="background">#FFFFFF</color>
-    <color name="profile_color">#c05dff</color>
+    <color name="profile_color">#50e1f7</color>
     <color name="button_start_gradient">#0bfdb6</color>
     <color name="button_end_gradient">#5fccff</color>
+    <color name="blue">#63acf6</color>
 </resources>

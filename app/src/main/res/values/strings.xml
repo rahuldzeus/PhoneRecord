@@ -35,4 +35,9 @@
     <string name="navigation_title_profile">profile</string>
     <string name="facebook_app_id">821885504681553</string>
     <string name="fb_login_protocol_scheme">fb821885504681553</string>
+    <string name="profile_description">Profile name</string>
+    <string name="description">Profile Picture</string>
+    <string name="number_of_posts">post</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="change_text">Change Photo</string>
 </resources>

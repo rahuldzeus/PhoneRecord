@@ -50,8 +50,10 @@
                 android:textColorHint="@color/hintColor"
                 android:inputType="phone"
                 android:layout_marginTop="20dp"
+                android:padding="10dp"
                 android:drawablePadding="5dp"
                 android:drawingCacheQuality="auto"
+                android:background="@drawable/textfieldstyle"
                 />
 </android.support.design.widget.TextInputLayout>
             <Button
@@ -62,7 +64,7 @@
                 android:layout_marginTop="35dp"
                 android:textAllCaps="false"
                 android:textColor="@color/loginButtonColor"
-                android:background="@color/loginButtonBackgroundColor"
+                android:background="@drawable/buttonstyle"
                 />
 
         </LinearLayout>

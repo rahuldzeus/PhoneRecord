@@ -15,4 +15,6 @@ public class News extends Fragment {
         //  Listener Methods and Business Logic will be here
         return view;
     }
+
+
 }
