@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -46,6 +47,8 @@ public class HomePage extends AppCompatActivity {
                     //Fragment
                   return true;
                 case R.id.navigation_upload:
+                    Intent toUploadOne=new Intent(getApplicationContext(),UploadOne.class);
+                    startActivity(toUploadOne);
                     //Fragment
                     return true;
                 case R.id.navigation_notification:
@@ -68,6 +71,10 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+
+
+
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -76,6 +83,7 @@ public class HomePage extends AppCompatActivity {
         ft.addToBackStack("news");
         ft.replace(R.id.homepage_frame,news);
         ft.commit();//Fragment
+
     }
 
     @Override

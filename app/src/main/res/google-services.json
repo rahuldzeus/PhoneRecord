@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "186151620595",
+    "firebase_url": "https://phone-13589.firebaseio.com",
+    "project_id": "phone-13589",
+    "storage_bucket": "phone-13589.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186151620595:android:427c82353c4117db",
+        "android_client_info": {
+          "package_name": "com.example.rahuldzeus.phonerecord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186151620595-92fa3kghteo1g1iaqa57qtokhis22pfh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLP-fPqTI8eI2a5COEQKz3nxS7ZGFTAIs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

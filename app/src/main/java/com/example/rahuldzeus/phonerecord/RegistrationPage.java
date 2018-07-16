@@ -12,6 +12,7 @@ public class RegistrationPage extends AppCompatActivity {
 
     Button signUp;
     EditText userPhone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

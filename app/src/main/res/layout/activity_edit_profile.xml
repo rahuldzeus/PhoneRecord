@@ -44,78 +44,74 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textColor="@color/com_facebook_button_background_color_disabled"/>
+
+        <EditText
+            android:id="@+id/online_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="@string/userName"
             android:textColor="@color/com_facebook_button_background_color_disabled"/>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:inputType="text"
-            android:text="Default Message"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Username"
-            android:textColor="@color/com_facebook_button_background_color_disabled"/>
-
-        <EditText
+            android:id="@+id/online_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:textSize="15sp"
             android:textColor="@color/colorPrimaryDark"
-            android:text="Default Username"/>
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Bio"
-            android:textColor="@color/com_facebook_button_background_color_disabled"/>
+            android:text="@string/bio"
+            android:textColor="@color/com_facebook_button_background_color_disabled"
+            tools:ignore="HardcodedText" />
 
         <EditText
+            android:id="@+id/online_bio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:textSize="15sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Default Bio"/>
+            android:textColor="@color/colorPrimaryDark" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Email"
+            android:text="@string/email"
             android:textColor="@color/com_facebook_button_background_color_disabled"/>
 
         <EditText
+            android:id="@+id/online_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:textSize="15sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Default Email"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Gender"
-            android:textColor="@color/com_facebook_button_background_color_disabled"/>
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </Spinner>
+            android:textColor="@color/colorPrimaryDark" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_gravity="end"
+            android:gravity="end">
             <ImageButton
+                android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/save_button"
                 android:background="@drawable/ic_check_box_black_24dp"/>
 
         </LinearLayout>

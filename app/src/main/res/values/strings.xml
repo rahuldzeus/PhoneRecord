@@ -18,7 +18,7 @@
     <string name="codeMessage">Enter the 6-digit code</string>
     <string name="resendOTP">Request a new code</string>
     <string name="codeNext">Next</string>
-    <string name="userName">Name</string>
+    <string name="userName">Username</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="register_finish">Finish</string>
     <string name="details">Almost done</string>
@@ -40,4 +40,16 @@
     <string name="number_of_posts">post</string>
     <string name="edit_profile">Edit profile</string>
     <string name="change_text">Change Photo</string>
+    <string name="uploading_one">Proceed to upload your Lovely and Romantic phone conversations. </string>
+    <string name="uploading_one_text_two">Your Identity is completely secured</string>
+    <string name="proceed">Proceed</string>
+    <string name="user_name">Username</string>
+    <string name="incorrect_name">Username already exist</string>
+    <string name="password_mismatch">Password mismatch</string>
+    <string name="cancel_button">Cancel Button</string>
+    <string name="save_button">Save Button</string>
+    <string name="name">Name</string>
+    <string name="bio">Bio</string>
+    <string name="email">Email</string>
+    <string name="gender">Gender</string>
 </resources>

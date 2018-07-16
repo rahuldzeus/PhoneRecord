@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomePage">
+        <activity
+            android:name=".WelcomePage"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +29,10 @@
             android:name=".HomePage"
             android:label="@string/title_activity_home_page" />
         <activity android:name=".EditProfile" />
+        <activity android:name=".UploadOne" />
+        <activity android:name=".FinalUpload" />
+        <activity android:name=".AudioPlayingPlayer"></activity>
+        <activity android:name=".News" />
     </application>
 
 </manifest>

@@ -111,11 +111,10 @@
 
 
                     <TextView
+                        android:id="@+id/post"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-
-                        android:text="125"
                         android:layout_gravity="center"
                         android:gravity="center"/>
 
