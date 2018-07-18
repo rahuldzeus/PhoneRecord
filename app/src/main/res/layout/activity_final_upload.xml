@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FinalUpload">
-
-    <Button
+    tools:context=".FinalUpload"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    >
+    <ImageButton
+        android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Final Upload Page"/>
+        android:layout_margin="10dp"
+        android:contentDescription="@string/back_button"
+        android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/upload_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/choose_file"
+            android:background="@color/com_facebook_button_background_color"
+            android:textColor="@color/loginButtonColor"
+            android:textAllCaps="false"
+            />
 
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

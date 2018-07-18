@@ -15,6 +15,7 @@ public class UploadOne extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_one);
         proceed_button=findViewById(R.id.proceed_button);
+        getSupportActionBar().hide();
         proceed_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

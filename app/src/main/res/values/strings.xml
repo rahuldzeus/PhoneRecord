@@ -40,8 +40,8 @@
     <string name="number_of_posts">post</string>
     <string name="edit_profile">Edit profile</string>
     <string name="change_text">Change Photo</string>
-    <string name="uploading_one">Proceed to upload your Lovely and Romantic phone conversations. </string>
-    <string name="uploading_one_text_two">Your Identity is completely secured</string>
+    <string name="uploading_one">Upload your Lovely and Romantic phone conversations. </string>
+    <string name="uploading_one_text_two">Be secure</string>
     <string name="proceed">Proceed</string>
     <string name="user_name">Username</string>
     <string name="incorrect_name">Username already exist</string>
@@ -52,4 +52,6 @@
     <string name="bio">Bio</string>
     <string name="email">Email</string>
     <string name="gender">Gender</string>
+    <string name="choose_file">Choose File</string>
+    <string name="back_button">Back Button</string>
 </resources>

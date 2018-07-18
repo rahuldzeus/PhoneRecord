@@ -119,10 +119,10 @@ public class EditProfile extends AppCompatActivity {
                                     Toast.makeText(EditProfile.this,"Connection Error",Toast.LENGTH_LONG).show();
                                    break;
                                 case "SUCCESS":
-                                    onlineEmail.setText(sendingEmail);
-                                    onlineUsername.setText(sendingUsername);
+                                    onlineEmail.setText(sendingEmail);  //Setting the updated values on edit  profile activity
+                                    onlineUsername.setText(sendingUsername);    //Save the username to shared Preference
                                     onlineBio.setText(sendingBio);
-                                    onlineName.setText(sendingName);
+                                   // onlineName.setText(sendingName);
                                     Toast.makeText(EditProfile.this,"Profile Updated",Toast.LENGTH_LONG).show();
 
                                     break;
@@ -139,17 +139,17 @@ public class EditProfile extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(EditProfile.this, "Try again Later", Toast.LENGTH_LONG).show();
+                                Toast.makeText(EditProfile.this, "Try Later", Toast.LENGTH_LONG).show();
                             }
                         }
                 ) {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<String, String>();
-                        params.put("catchingName", sendingName);
+                      //  params.put("catchingName", sendingName);
                         params.put("catchingBio", sendingBio);
-                        params.put("catchingUsername", sendingUsername);
-                        params.put("catchingEmail", sendingEmail);
+                        //params.put("catchingUsername", sendingUsername);
+                       // params.put("catchingEmail", sendingEmail);
                         return params;
                     }
                 };
