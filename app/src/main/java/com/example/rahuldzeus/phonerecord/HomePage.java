@@ -95,26 +95,39 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.rate_us:
-                Toast.makeText(HomePage.this, "HELLO Rate Us", Toast.LENGTH_SHORT).show();
+    //Will Opem the googlePlay and rating will be taken
                 return true;
             case R.id.go_premium:
-                Toast.makeText(HomePage.this, "HELLO Premium", Toast.LENGTH_SHORT).show();
+                Intent toGoPremium=new Intent(HomePage.this,GoPremium.class);
+                startActivity(toGoPremium);
                 return true;
-            case R.id.faq:
-                Toast.makeText(HomePage.this, "HELLO FAQ", Toast.LENGTH_SHORT).show();
+           /* case R.id.faq:
+               Intent toFAQ=new Intent(HomePage.this,Faq.class);
+               startActivity(toFAQ);
                 break;
             case R.id.invite:
-                Toast.makeText(HomePage.this, "HELLO Invite", Toast.LENGTH_SHORT).show();
+               Intent toInvite=new Intent(HomePage.this,Invite.class);
+               startActivity(toInvite);
                 return true;
             case R.id.terms:
-                Toast.makeText(HomePage.this, "HELLO Terms", Toast.LENGTH_SHORT).show();
+               Intent toTerms=new Intent(HomePage.this,Terms.class);
+               startActivity(toTerms);
                 return true;
             case R.id.privacy:
-                Toast.makeText(HomePage.this, "HELLO Privacy", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.log_out:
+                Intent toPrivacy=new Intent(HomePage.this,Privacy.class);
+                startActivity(toPrivacy);
+
+                return true;*/
+            case R.id.log_out:      //Session will be removed and the user will be sent to the welcome page
+                SharedPreferences logout=getSharedPreferences("USERNAME",MODE_PRIVATE);
+                SharedPreferences.Editor loggingOut=logout.edit();
+                loggingOut.putString("USERNAME",null);
+                loggingOut.commit();
+                Intent toLoginAfterLogout=new Intent(HomePage.this,WelcomePage.class);
+                startActivity(toLoginAfterLogout);
                 Toast.makeText(HomePage.this, "HELLO Logout", Toast.LENGTH_SHORT).show();
                 return true;
         }

@@ -44,38 +44,30 @@
             android:orientation="vertical">
 
 
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-
-            <android.support.design.widget.TextInputEditText
+            <EditText
                 android:id="@+id/username_from_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/user_name"
                 android:padding="10dp"
+                android:layout_marginBottom="15dp"
                 android:inputType="text"
                 android:background="@drawable/textfieldstyle"
-                android:textColorHint="@color/glimColor"
+                android:textColorHint="@color/com_facebook_button_background_color_disabled"
                 />
 
-</android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/password_from_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:padding="10dp"
-                android:textColorHint="@color/glimColor"
                 android:background="@drawable/textfieldstyle"
                 android:inputType="textPassword"
+                android:textColorHint="@color/com_facebook_button_background_color_disabled"
                 />
-            </android.support.design.widget.TextInputLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="10dp">

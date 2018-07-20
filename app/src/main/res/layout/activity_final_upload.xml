@@ -22,14 +22,31 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:src="@drawable/uploadimage"/>
         <Button
-            android:id="@+id/upload_button"
+            android:id="@+id/buttonChoose"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="25dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/choose_file"
+            android:background="@color/com_facebook_button_background_color"
+            android:textColor="@color/loginButtonColor"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/buttonUpload"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/upload_file"
+            android:visibility="gone"
             android:background="@color/com_facebook_button_background_color"
             android:textColor="@color/loginButtonColor"
             android:textAllCaps="false"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PhoneRecord</string>
+    <string name="app_name">Glim</string>
     <string name="glim">Glim</string>
     <string name="phoneNumber">Phone</string>
     <string name="password">Password</string>
@@ -54,4 +54,8 @@
     <string name="gender">Gender</string>
     <string name="choose_file">Choose File</string>
     <string name="back_button">Back Button</string>
+    <string name="go_premium">Go Premium</string>
+    <string name="slide">Slide</string>
+    <string name="feature_one">Feature !</string>
+    <string name="upload_file">Upload</string>
 </resources>

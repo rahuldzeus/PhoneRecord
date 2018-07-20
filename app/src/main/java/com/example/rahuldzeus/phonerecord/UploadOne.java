@@ -1,27 +1,47 @@
 package com.example.rahuldzeus.phonerecord;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class UploadOne extends AppCompatActivity {
 
-    Button proceed_button;
+    ImageButton videoUpload, audioUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_one);
-        proceed_button=findViewById(R.id.proceed_button);
         getSupportActionBar().hide();
-        proceed_button.setOnClickListener(new View.OnClickListener() {
+        ImageButton back_button=findViewById(R.id.back_button);
+        back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toFinalUpload=new Intent(getApplicationContext(),FinalUpload.class);
-                startActivity(toFinalUpload);
+                onBackPressed();
             }
         });
+        videoUpload=findViewById(R.id.to_video_upload_activity);
+        audioUpload=findViewById(R.id.to_audio_upload_activity);
+        videoUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent withVideoUploadParameter=new Intent(UploadOne.this,FinalUpload.class);
+                withVideoUploadParameter.putExtra("TYPE","video");
+                startActivity(withVideoUploadParameter);
+            }
+        });
+        audioUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent withAudioUploadParameter=new Intent(UploadOne.this,FinalUpload.class);
+                withAudioUploadParameter.putExtra("TYPE","audio");
+                startActivity(withAudioUploadParameter);
+            }
+        });
+
     }
 }

@@ -31,8 +31,10 @@
         <activity android:name=".EditProfile" />
         <activity android:name=".UploadOne" />
         <activity android:name=".FinalUpload" />
-        <activity android:name=".AudioPlayingPlayer"></activity>
+        <activity android:name=".AudioPlayingPlayer" />
         <activity android:name=".News" />
+        <activity android:name=".GoPremium" />
+        <activity android:name=".Faq"></activity>
     </application>
 
 </manifest>
