@@ -29,17 +29,15 @@ public class UploadOne extends AppCompatActivity {
         videoUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent withVideoUploadParameter=new Intent(UploadOne.this,FinalUpload.class);
-                withVideoUploadParameter.putExtra("TYPE","video");
-                startActivity(withVideoUploadParameter);
+                Intent toVideoUploadActivity=new Intent(UploadOne.this,FinalUploadVideo.class);
+                startActivity(toVideoUploadActivity);
             }
         });
         audioUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent withAudioUploadParameter=new Intent(UploadOne.this,FinalUpload.class);
-                withAudioUploadParameter.putExtra("TYPE","audio");
-                startActivity(withAudioUploadParameter);
+                Intent toAudioUploadActivity=new Intent(UploadOne.this,FinalUploadAudio.class);
+                startActivity(toAudioUploadActivity);
             }
         });
 
