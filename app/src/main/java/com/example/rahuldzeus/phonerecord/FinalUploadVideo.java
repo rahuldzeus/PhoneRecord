@@ -44,7 +44,6 @@ public class FinalUploadVideo extends AppCompatActivity {
     ImageView rocket;
     String SERVER_URL="https://storyclick.000webhostapp.com/upload_file.php";
     File video;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +94,25 @@ public class FinalUploadVideo extends AppCompatActivity {
                         buttonUpload.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                uploadFile(filePath); /*Upload to Server*/
+                                dialog=new ProgressDialog(FinalUploadVideo.this);
+                                dialog.setMessage("Please wait");
+                                dialog.setTitle("Uploading...");
+                                dialog.setCancelable(false);
+                                dialog.show();
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        /*Uploading begin*/
+                                        uploadFile(filePath);
+                                        /*Uploading End*/
+                                        if (dialog.isShowing())
+                                        {
+                                            dialog.dismiss();
+                                        }
+
+
+                                    }
+                                }).start();
                             }
                         });
 
@@ -108,6 +125,7 @@ public class FinalUploadVideo extends AppCompatActivity {
     public void uploadFile(final String selectedFilePath){
 
         int serverResponseCode = 0;
+
 
         HttpURLConnection connection;
         DataOutputStream dataOutputStream;
@@ -141,21 +159,39 @@ public class FinalUploadVideo extends AppCompatActivity {
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);//Allow Inputs
                 connection.setDoOutput(true);//Allow Outputs
-                connection.setUseCaches(false);//Don't use a cached Copy
+                connection.setUseCaches(false);
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Connection", "Keep-Alive");
                 connection.setRequestProperty("ENCTYPE", "multipart/form-data");
                 connection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
                 connection.setRequestProperty("uploaded_file",selectedFilePath);
-                connection.setRequestProperty("username",username);
+                //Write form fields
+
+
 
                 //creating new dataoutputstream
                 dataOutputStream = new DataOutputStream(connection.getOutputStream());
 
+
                 //writing bytes to data outputstream
+
+
+                /*SENDING FORM DATA-START*/
+                dataOutputStream.writeBytes(twoHyphens + boundary + lineEnd);
+                dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"username"+ lineEnd);
+                dataOutputStream.writeBytes("Content-Type: text/plain; charset=UTF-8" + lineEnd);
+                dataOutputStream.writeBytes(lineEnd);
+                dataOutputStream.writeBytes(username+ lineEnd);
+                dataOutputStream.flush();
+                /*SENDING FORM DATA-END*/
+
+                /*SENDING FILE DATA-START*/
                 dataOutputStream.writeBytes(twoHyphens + boundary + lineEnd);
                 dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\""+ selectedFilePath + "\"" + lineEnd);
                 dataOutputStream.writeBytes(lineEnd);
+                /*SENDING FILE DATA-END*/
+
+
 
                 //returns no. of bytes present in fileInputStream
                 bytesAvailable = fileInputStream.available();
@@ -188,14 +224,10 @@ public class FinalUploadVideo extends AppCompatActivity {
                             @Override
                             public void run() {
                                 buttonUpload.setVisibility(View.GONE);
-                                rocket.setImageResource(R.drawable.checked);
-
                             }
                         });
                     }
-                    else
-                    {
-                        Toast.makeText(FinalUploadVideo.this, "Upload Failed", Toast.LENGTH_LONG).show();
+                    else{
                         rocket.setImageResource(R.drawable.error);
                     }
                 }
@@ -205,30 +237,30 @@ public class FinalUploadVideo extends AppCompatActivity {
                 dataOutputStream.flush();
                 dataOutputStream.close();
 
-                /*Response from Server start*/
 
+                /*Response from Server start*/
                 InputStream is = connection.getInputStream();
                 byte[] b1 = new byte[1024];
-                StringBuffer resp = new StringBuffer();
-
+                final StringBuffer resp = new StringBuffer();
                 while (is.read(b1) != -1)
                     resp.append(new String(b1));
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(FinalUploadVideo.this,resp.toString(),Toast.LENGTH_LONG).show();
+                        if (resp.toString().substring(0,13).equalsIgnoreCase("File Uploaded"))
+                        {
+                            rocket.setImageResource(R.drawable.checked);
+                        }
+                        else{
+                            rocket.setImageResource(R.drawable.error);
+                        }
+                    }
+                });
 
                 connection.disconnect();
-                switch(resp.toString()){
-                    case "success":
-                        Toast.makeText(FinalUploadVideo.this,"Upload Success",Toast.LENGTH_LONG).show();
-                        rocket.setImageResource(R.drawable.checked);
-                        break;
-                    case "failed":
-                        Toast.makeText(FinalUploadVideo.this,"Upload Failed",Toast.LENGTH_LONG).show();
-                        rocket.setImageResource(R.drawable.error);
-                }
 
                 /*Response from server end*/
-
-
-
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {

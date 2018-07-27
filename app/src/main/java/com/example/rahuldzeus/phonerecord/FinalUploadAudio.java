@@ -1,5 +1,6 @@
 package com.example.rahuldzeus.phonerecord;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -50,6 +51,7 @@ public class FinalUploadAudio extends AppCompatActivity {
         buttonUpload = findViewById(R.id.buttonUpload);
         buttonChoose = findViewById(R.id.buttonChoose);
         buttonUpload.setVisibility(View.GONE);
+
         SharedPreferences sp = getSharedPreferences("USERNAME", MODE_PRIVATE);
         username = sp.getString("username", null);     /*Fetch username from the Shared Preference and send to the Server*/
         backButton.setOnClickListener(new View.OnClickListener() {      //if back button is pressed then the control moves to the previous activity
@@ -87,22 +89,36 @@ public class FinalUploadAudio extends AppCompatActivity {
                         buttonUpload.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                /*Dialog starts*/
-                                // uploadToServer(audio,"audio");  /*UPLOAD TO SERVER*/
-                                /*UPloading Starts Here*/
-                               uploadFile(filePath);
-                                /*Uploaded Ends Here*/
+                                dialog=new ProgressDialog(FinalUploadAudio.this);
+                                dialog.setMessage("Please wait");
+                                dialog.setTitle("Uploading...");
+                                dialog.setCancelable(false);
+                                dialog.show();
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        /*Uploading begin*/
+
+                                        uploadFile(filePath);
+                                       if (dialog.isShowing())
+                                       {
+                                           dialog.dismiss();
+                                       }
+
+                                        /*Uploading End*/
+                                    }
+                                }).start();
 
                             }
 
                         });
+
                     }
                 }
-
             }
         }
     }
-    /*Start UPloading*/
+    /*Start Uploading*/
     public void uploadFile(final String selectedFilePath){
 
         int serverResponseCode = 0;
@@ -124,8 +140,6 @@ public class FinalUploadAudio extends AppCompatActivity {
         final String fileName = parts[parts.length-1];
 
         if (!selectedFile.isFile()){
-            dialog.dismiss();
-
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -139,7 +153,7 @@ public class FinalUploadAudio extends AppCompatActivity {
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);//Allow Inputs
                 connection.setDoOutput(true);//Allow Outputs
-                connection.setUseCaches(false);//Don't use a cached Copy
+                connection.setUseCaches(false);
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Connection", "Keep-Alive");
                 connection.setRequestProperty("ENCTYPE", "multipart/form-data");
@@ -203,16 +217,18 @@ public class FinalUploadAudio extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+
                                 buttonUpload.setVisibility(View.GONE);
                                 rocket.setImageResource(R.drawable.checked);
+
 
                             }
                         });
                     }
                     else
                     {
-                        Toast.makeText(FinalUploadAudio.this, "Upload Failed", Toast.LENGTH_LONG).show();
                         rocket.setImageResource(R.drawable.error);
+
                     }
                 }
 
@@ -226,11 +242,16 @@ public class FinalUploadAudio extends AppCompatActivity {
 
                 InputStream is = connection.getInputStream();
                 byte[] b1 = new byte[1024];
-                StringBuffer resp = new StringBuffer();
+               final StringBuffer resp = new StringBuffer();
                 while (is.read(b1) != -1)
                     resp.append(new String(b1));
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(FinalUploadAudio.this,resp.toString(),Toast.LENGTH_LONG).show();
+                    }
+                });
 
-                Toast.makeText(FinalUploadAudio.this,resp.toString(),Toast.LENGTH_LONG).show();
 
                 connection.disconnect();
 
@@ -240,18 +261,20 @@ public class FinalUploadAudio extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(FinalUploadAudio.this,"File Not Found",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FinalUploadAudio.this,"File not found",Toast.LENGTH_LONG).show();
+
                     }
                 });
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-                Toast.makeText(FinalUploadAudio.this, "URL error!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FinalUploadAudio.this,"Connection Error",Toast.LENGTH_LONG).show();
+
 
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(FinalUploadAudio.this, "Cannot Read/Write File!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FinalUploadAudio.this,"File error",Toast.LENGTH_LONG).show();
+
             }
         }
-
     }
 }
