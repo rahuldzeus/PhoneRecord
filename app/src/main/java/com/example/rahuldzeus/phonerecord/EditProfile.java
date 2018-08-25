@@ -39,10 +39,10 @@ import static com.example.rahuldzeus.phonerecord.R.style.AppTheme;
 
 public class EditProfile extends AppCompatActivity {
 
-    String gender[]={"Male","Female","Not Specified"};
+    String gender[]={"Male","Female"};
     Spinner spinner;
     ImageButton save;
-    RequestQueue mRequestQueue;
+    SharedPreferences profileData;
     String user_name;
     String url="https://storyclick.000webhostapp.com/edit_profile.php";
     EditText onlineName,onlineUsername,onlineBio,onlineEmail;
@@ -56,6 +56,7 @@ public class EditProfile extends AppCompatActivity {
         onlineEmail=findViewById(R.id.online_email);
         SharedPreferences sharedPreferences=getSharedPreferences("USERNAME",MODE_PRIVATE);
         user_name=sharedPreferences.getString("username",null);
+        profileData=getSharedPreferences("PROFILE_DATA",MODE_PRIVATE);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -72,6 +73,8 @@ public class EditProfile extends AppCompatActivity {
                             onlineBio.setText(jo.getString("bio"));
                             onlineUsername.setText(jo.getString("username"));
 //                            onlineEmail.setText(jo.getString("email"));
+                            SharedPreferences.Editor edit=profileData.edit();
+                            edit.putString("bio",jo.getString("bio"));
 
                             break;
                     }
@@ -103,7 +106,7 @@ public class EditProfile extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {        //Fetch and save the data into the database
             @Override
             public void onClick(View v) {
-                String saveUrl="https://storyclick.000webhostapp.com/save_profile.php";
+                String saveUrl="http://glim.rf.gd/save_profile.php";
                final String sendingName=onlineName.getText().toString().trim();
                final String sendingBio=onlineBio.getText().toString().trim();
                final String sendingUsername=onlineUsername.getText().toString().trim();
@@ -124,6 +127,7 @@ public class EditProfile extends AppCompatActivity {
                                     onlineBio.setText(sendingBio);
                                    // onlineName.setText(sendingName);
                                     Toast.makeText(EditProfile.this,"Profile Updated",Toast.LENGTH_LONG).show();
+
 
                                     break;
                                 case "REQUEST_ERROR":

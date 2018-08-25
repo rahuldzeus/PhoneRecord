@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -37,6 +38,9 @@ public class FinalUploadAudio extends AppCompatActivity {
     File audio;
     ImageView rocket;
     Uri audioUri=null;
+    EditText message;
+    String messageToSend;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +54,7 @@ public class FinalUploadAudio extends AppCompatActivity {
         backButton = findViewById(R.id.back_button);
         buttonUpload = findViewById(R.id.buttonUpload);
         buttonChoose = findViewById(R.id.buttonChoose);
-        buttonUpload.setVisibility(View.GONE);
-
+        message=findViewById(R.id.text_message);
         SharedPreferences sp = getSharedPreferences("USERNAME", MODE_PRIVATE);
         username = sp.getString("username", null);     /*Fetch username from the Shared Preference and send to the Server*/
         backButton.setOnClickListener(new View.OnClickListener() {      //if back button is pressed then the control moves to the previous activity
@@ -77,7 +80,8 @@ public class FinalUploadAudio extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == AUDIO_REQUEST) {
                 buttonUpload.setVisibility(View.VISIBLE);/*set Visibility for buttonUpload*/
-               audioUri = data.getData();  //URI
+                message.setVisibility(View.VISIBLE);/*set Visibility for message*/
+                audioUri = data.getData();  //URI
                 if (audioUri.getScheme().toString().compareTo("content") == 0) {
                     Cursor cursor = getContentResolver().query(audioUri, null, null, null, null);
                     if (cursor.moveToFirst()) {
@@ -94,6 +98,7 @@ public class FinalUploadAudio extends AppCompatActivity {
                                 dialog.setTitle("Uploading...");
                                 dialog.setCancelable(false);
                                 dialog.show();
+                                messageToSend=message.getText().toString(); /*Message body fetched*/
                                 new Thread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -128,14 +133,10 @@ public class FinalUploadAudio extends AppCompatActivity {
         String lineEnd = "\r\n";
         String twoHyphens = "--";
         String boundary = "*****";
-
-
         int bytesRead,bytesAvailable,bufferSize;
         byte[] buffer;
         int maxBufferSize = 1024 * 1024;
         File selectedFile = new File(selectedFilePath);
-
-
         String[] parts = selectedFilePath.split("/");
         final String fileName = parts[parts.length-1];
 
@@ -161,15 +162,18 @@ public class FinalUploadAudio extends AppCompatActivity {
                 connection.setRequestProperty("uploaded_file",selectedFilePath);
                 //Write form fields
 
-
-
                 //creating new dataoutputstream
                 dataOutputStream = new DataOutputStream(connection.getOutputStream());
 
-
                 //writing bytes to data outputstream
-
-
+                /*SENDING FORM DATA-START*/
+                dataOutputStream.writeBytes(twoHyphens + boundary + lineEnd);
+                dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"message"+ lineEnd);
+                dataOutputStream.writeBytes("Content-Type: text/plain; charset=UTF-8" + lineEnd);
+                dataOutputStream.writeBytes(lineEnd);
+                dataOutputStream.writeBytes(messageToSend+ lineEnd);
+                dataOutputStream.flush();
+                /*SENDING FORM DATA-END*/
                 /*SENDING FORM DATA-START*/
                 dataOutputStream.writeBytes(twoHyphens + boundary + lineEnd);
                 dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"username"+ lineEnd);
@@ -184,8 +188,6 @@ public class FinalUploadAudio extends AppCompatActivity {
                 dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\""+ selectedFilePath + "\"" + lineEnd);
                 dataOutputStream.writeBytes(lineEnd);
                 /*SENDING FILE DATA-END*/
-
-
 
                 //returns no. of bytes present in fileInputStream
                 bytesAvailable = fileInputStream.available();
@@ -205,10 +207,8 @@ public class FinalUploadAudio extends AppCompatActivity {
                     bufferSize = Math.min(bytesAvailable,maxBufferSize);
                     bytesRead = fileInputStream.read(buffer,0,bufferSize);
                 }
-
                 dataOutputStream.writeBytes(lineEnd);
                 dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
                 serverResponseCode = connection.getResponseCode();
                 String serverResponseMessage = connection.getResponseMessage();
                 if (serverResponseMessage.equals("OK")) {
@@ -220,8 +220,8 @@ public class FinalUploadAudio extends AppCompatActivity {
 
                                 buttonUpload.setVisibility(View.GONE);
                                 rocket.setImageResource(R.drawable.checked);
-
-
+                                message.setVisibility(View.GONE);
+                                message.setText("");
                             }
                         });
                     }
@@ -231,12 +231,10 @@ public class FinalUploadAudio extends AppCompatActivity {
 
                     }
                 }
-
                 //closing the input and output streams
                 fileInputStream.close();
                 dataOutputStream.flush();
                 dataOutputStream.close();
-
 
                 /*Response from Server start*/
 
@@ -251,7 +249,6 @@ public class FinalUploadAudio extends AppCompatActivity {
                         Toast.makeText(FinalUploadAudio.this,resp.toString(),Toast.LENGTH_LONG).show();
                     }
                 });
-
 
                 connection.disconnect();
 

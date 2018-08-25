@@ -71,10 +71,6 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-
-
-
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -83,7 +79,6 @@ public class HomePage extends AppCompatActivity {
         ft.addToBackStack("news");
         ft.replace(R.id.homepage_frame,news);
         ft.commit();//Fragment
-
     }
 
     @Override
@@ -98,7 +93,7 @@ public class HomePage extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.rate_us:
-    //Will Opem the googlePlay and rating will be taken
+    //Will Open the googlePlay and rating will be taken
                 return true;
             case R.id.go_premium:
                 Intent toGoPremium=new Intent(HomePage.this,GoPremium.class);

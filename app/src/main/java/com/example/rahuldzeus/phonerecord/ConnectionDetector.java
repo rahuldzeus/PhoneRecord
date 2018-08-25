@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class ConnectionDetector {
-    public   boolean isConnectingToInternet(Context context)
+    public boolean isConnectingToInternet(Context context)
     {
         ConnectivityManager connectivity =
                 (ConnectivityManager) context.getSystemService(

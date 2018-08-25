@@ -58,4 +58,5 @@
     <string name="slide">Slide</string>
     <string name="feature_one">Feature !</string>
     <string name="upload_file">Upload</string>
+    <string name="message">Message (Optional)</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.rahuldzeus.phonerecord;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.CoordinatorLayout;
@@ -40,6 +41,7 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
     Button goHomePageFromLogin;
     ConnectionDetector connectionDetector;
     CoordinatorLayout coordinatorLayout;
+    ProgressDialog progressDialog;
     EditText login_username, login_password;
     String LOGIN_URL="https://storyclick.000webhostapp.com/login.php";
     String usernameToSend, passwordToSend;
@@ -88,9 +90,16 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
                         error_response.setVisibility(View.VISIBLE);
 
                     } else {
+                        progressDialog=new ProgressDialog(WelcomePage.this);
+                        progressDialog.setTitle("Please Wait...");
+                        progressDialog.setMessage("Loading...");
+                        progressDialog.setIndeterminate(true);
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
+                                dialogClose();
                                 switch (response) {
                                     case "LOGIN GRANTED":
                                         SharedPreferences sp=getSharedPreferences("USERNAME",MODE_PRIVATE);        //Shared Preferences contain USERNAME to track the user
@@ -99,15 +108,14 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
                                         editor.commit();
                                         Intent toHomePage = new Intent(WelcomePage.this, HomePage.class);
                                         startActivity(toHomePage);
+
                                         break;
                                     case "ERROR IN CONNECTION":
                                         Toast.makeText(WelcomePage.this, "Try again later", Toast.LENGTH_LONG).show();
-
                                         break;
                                     case "LOGIN DETAILS NOT FOUND":
                                         error_response.setText(("Wrong username or password"));
                                         error_response.setVisibility(View.VISIBLE);
-
                                         break;
                                 }
                             }
@@ -115,6 +123,7 @@ public class WelcomePage extends AppCompatActivity implements View.OnClickListen
                                 new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
+                                        dialogClose();
                                         Toast.makeText(WelcomePage.this, "Try again Later", Toast.LENGTH_LONG).show();
                                     }
                                 }
@@ -245,6 +254,11 @@ startActivity(goingToNewsFeed);
         }
         else{
             Toast.makeText(WelcomePage.this, "No internet connection", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void dialogClose(){
+        if (progressDialog.isShowing()){
+            progressDialog.dismiss();
         }
     }
 
